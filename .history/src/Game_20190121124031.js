@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card} from './Card'
-// import './Game.css'
+import './Game.css'
 import PropTypes from 'prop-types'
 
 const Game = (props) => {
@@ -8,7 +8,7 @@ const Game = (props) => {
     return <Card {...c} key={index} handleCardClick = {props.handleCardClick}/>
   })
     return (
-      <div className="cardsDiv">
+      <div className="cardsdiv">
         {myCards}
       </div>
     )

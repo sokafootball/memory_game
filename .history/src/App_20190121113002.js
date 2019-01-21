@@ -89,22 +89,18 @@ class App extends Component {
 
   newGame = () => {
     //shuffle cards
-    setTimeout(this.shuffleCards, 50)    //set all cards to hidden and showing cards to 0
-    let myCards = this.state.cards.slice()
+    this.shuffleCards()
+    //set all cards to hidden and showing cards to 0
+    let myCards = this.state.cards
     myCards.forEach(card => card.status = 'hidden')
-    this.setState({cards: myCards, showingCards: 0})
+    this.setState({cards: myCards})
   }
 
   render() {
     return (
       <div className="App">
-        <Navbar
-        newGame={this.newGame}
-        />
-        <Game
-        cards={this.state.cards}
-        handleCardClick={this.handleCardClick}
-        />
+        <Navbar />
+        <Game cards={this.state.cards} handleCardClick={this.handleCardClick}/>
       </div>
     );
   }

@@ -16,14 +16,11 @@ if(props.status !== 'hidden'){
 }
 
 Card.defaultProps = {
-  id: '99',
-  status: 'hidden',
   color: 'grey'
 }
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
-  status: PropTypes.string.isRequired,
+
   color: PropTypes.string.isRequired
 }
 

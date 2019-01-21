@@ -28,8 +28,9 @@ class App extends Component {
       showingCards: 0
     }
     this.handleCardClick = this.handleCardClick.bind(this)
-    this.newGame = this.newGame.bind(this)
-    setTimeout(this.shuffleCards, 50)
+    // this.countShowingCards = this.countShowingCards.bind(this)
+    // this.showCard = this.showCard.bind(this)
+    // this.compareCards = this.compareCards.bind(this)
   }
 
   countShowingCards = () => {
@@ -87,27 +88,18 @@ class App extends Component {
     this.setState({cards: myCards}, console.log(this.state.cards))
   }
 
-  newGame = () => {
-    //shuffle cards
-    setTimeout(this.shuffleCards, 50)    //set all cards to hidden and showing cards to 0
-    let myCards = this.state.cards.slice()
-    myCards.forEach(card => card.status = 'hidden')
-    this.setState({cards: myCards, showingCards: 0})
-  }
-
   render() {
     return (
       <div className="App">
-        <Navbar
-        newGame={this.newGame}
-        />
-        <Game
-        cards={this.state.cards}
-        handleCardClick={this.handleCardClick}
-        />
+        <Navbar />
+        <Game cards={this.state.cards} handleCardClick={this.handleCardClick}/>
       </div>
     );
   }
 }
+
+
+
+
 
 export default App;

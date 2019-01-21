@@ -4,8 +4,8 @@ h3 {
 
 .mainBar {
   color: white;
-  background: #000066;
-  padding: 0px 30px;
+  background: #0000ff;
+  margin: 0px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;

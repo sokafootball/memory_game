@@ -3,9 +3,7 @@ h3 {
 }
 
 .mainBar {
-  color: white;
-  background: #000066;
-  padding: 0px 30px;
+  margin: 0 30;
   display: flex;
   justify-content: space-between;
   align-items: center;

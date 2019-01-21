@@ -89,7 +89,8 @@ class App extends Component {
 
   newGame = () => {
     //shuffle cards
-    setTimeout(this.shuffleCards, 50)    //set all cards to hidden and showing cards to 0
+    this.shuffleCards()
+    //set all cards to hidden and showing cards to 0
     let myCards = this.state.cards.slice()
     myCards.forEach(card => card.status = 'hidden')
     this.setState({cards: myCards, showingCards: 0})

@@ -28,8 +28,9 @@ class App extends Component {
       showingCards: 0
     }
     this.handleCardClick = this.handleCardClick.bind(this)
-    this.newGame = this.newGame.bind(this)
-    setTimeout(this.shuffleCards, 50)
+    this.countShowingCards = this.countShowingCards.bind(this)
+    this.showCard = this.showCard.bind(this)
+    this.compareCards = this.compareCards.bind(this)
   }
 
   countShowingCards = () => {
@@ -64,50 +65,36 @@ class App extends Component {
     console.log('compareCards called')
     let comparedCards = this.state.cards.filter((card) => card.status === 'showing')
     const isMatch = comparedCards[0].color === comparedCards[1].color
-    setTimeout(() => {
-      comparedCards.forEach(card => {isMatch ? card.status = 'matched' : card.status = 'hidden'})
-      let newCards = this.state.cards.slice()
-      newCards = newCards.map(newCard => {
-        if(comparedCards.some(card => card.id === newCard.id)){
-          isMatch ? newCard.status = 'matched' : newCard.status = 'hidden'
-        }
-        return newCard
-      })
-      this.setState({newCards, showingCards:0})
-    }, 1000)
+    comparedCards.forEach(card => {isMatch ? card.status = 'matched' : card.status = 'hidden'})
+    let newCards = this.state.cards.slice()
+    newCards = newCards.map(newCard => {
+      if(comparedCards.some(card => card.id === newCard.id)){
+        isMatch ? newCard.status = 'matched' : newCard.status = 'hidden'
+      }
+      return newCard
+    })
+    this.setState({newCards, showingCards:0})
   }
 
-  shuffleCards = () => {
-    console.log('ShuffleCards called')
-    let myCards = this.state.cards.slice()
-    for (let i = myCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [myCards[i], myCards[j]] = [myCards[j], myCards[i]];
-    }
-    this.setState({cards: myCards}, console.log(this.state.cards))
-  }
-
-  newGame = () => {
-    //shuffle cards
-    setTimeout(this.shuffleCards, 50)    //set all cards to hidden and showing cards to 0
-    let myCards = this.state.cards.slice()
-    myCards.forEach(card => card.status = 'hidden')
-    this.setState({cards: myCards, showingCards: 0})
-  }
-
+    //if there is another showing card
+        //if they match
+          //change their status to matched
+          //if all cards match
+            //game is won
+        //if they do not match
+          //change their status to hidden
   render() {
     return (
       <div className="App">
-        <Navbar
-        newGame={this.newGame}
-        />
-        <Game
-        cards={this.state.cards}
-        handleCardClick={this.handleCardClick}
-        />
+        <Navbar />
+        <Game cards={this.state.cards} handleCardClick={this.handleCardClick}/>
       </div>
     );
   }
 }
+
+
+
+
 
 export default App;
