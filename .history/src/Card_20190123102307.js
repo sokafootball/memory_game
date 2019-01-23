@@ -11,16 +11,20 @@ if(props.status !== 'hidden'){
 }
 
   return (
-    <div className="card" style={style}></div>
+    <div className="card" style={style} onClick={props.handleCardClick(props.id)}></div>
   )
 }
 
 Card.defaultProps = {
+  id: '99',
+  status: 'hidden',
   color: 'grey'
 }
 
 Card.propTypes = {
-  color: PropTypes.string
+  id: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
 }
 
 export {Card}

@@ -29,7 +29,10 @@ class App extends Component {
     }
     this.handleCardClick = this.handleCardClick.bind(this)
     this.newGame = this.newGame.bind(this)
-    setTimeout(this.shuffleCards, 50)
+  }
+
+  componentDidMount(){
+    this.shuffleCards()
   }
 
   countShowingCards = () => {
